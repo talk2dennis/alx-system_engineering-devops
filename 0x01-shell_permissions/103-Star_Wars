@@ -1,2 +1,2 @@
 #!/bin/bash
-./StarWars
+xdg-open StarWars
