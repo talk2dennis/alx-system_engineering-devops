@@ -11,3 +11,4 @@ Add /action to the PATH. /action should be the last directory the shell looks in
 ### 5. 4-global_variables
 ### 6. 5-local_variables
 ### 7. 6-create_local_variable
+### 8. 7-create_global_variable
