@@ -17,3 +17,6 @@ Add /action to the PATH. /action should be the last directory the shell looks in
 ### 11. 10-love_exponent_breath
 ### 12. 11-binary_to_decimal
 ### 13. 12-combinations
+### 14. 13-floats
+- Write a script that prints a number with two decimal places, followed by a new line.
+- The number will be stored in the environment variable NUM
