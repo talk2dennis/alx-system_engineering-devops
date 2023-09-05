@@ -16,3 +16,4 @@ Add /action to the PATH. /action should be the last directory the shell looks in
 ### 10. 9-divide_and_rule
 ### 11. 10-love_exponent_breath
 ### 12. 11-binary_to_decimal
+### 13. 12-combinations
