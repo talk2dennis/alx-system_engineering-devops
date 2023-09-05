@@ -1,0 +1,4 @@
+#!/bin/bash
+alias pu='git push'
+alias com='git commit'
+alias add='git add .'
