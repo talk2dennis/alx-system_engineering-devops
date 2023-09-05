@@ -1,2 +1,2 @@
 #!/bin/bash
-cut -d '  ' -f 1 < test | head -n 1
+cut -d '  ' -f 1 | head -n 1
