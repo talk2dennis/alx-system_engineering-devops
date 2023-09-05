@@ -1,5 +1,1 @@
-## Shell, init files, variables and expansions
-
-### 1. 0-alias
-- Name: ls
-- Value: rm *
+### 1. 1-hello_you
