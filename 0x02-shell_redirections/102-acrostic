@@ -1,2 +1,2 @@
 #!/bin/bash
-echo - | cut -d " " -f 1 | head -n 1 | tr '[:lower:]' '[:upper:]' 
+cat - | cut -c1 | head -n 1 | tr '[:lower:]' '[:upper:]' 
