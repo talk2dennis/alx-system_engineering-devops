@@ -1,0 +1,5 @@
+# ssh configuration settings
+
+Host *
+	PasswordAuthentication no
+	IdentifyFile ~/.ssh/school
