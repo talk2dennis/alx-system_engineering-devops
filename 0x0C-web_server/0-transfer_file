@@ -11,4 +11,4 @@ ip=$2
 uname=$3
 keypath=$4
 
-scp StrictHostKeyChecking=no -i "$keypath" "$fpath" "$uname@$ip":~/
+scp -o StrictHostKeyChecking=no -i "$keypath" "$fpath" "$uname@$ip":~/
