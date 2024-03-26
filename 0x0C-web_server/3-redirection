@@ -4,7 +4,7 @@
 
 # installing nginx
 sudo apt-get -y update
-sudo apt-get -y istall nginx
+sudo apt-get -y install nginx
 
 # Configure Nginx to listen on port 80 and redirect /redirect_me
 sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
