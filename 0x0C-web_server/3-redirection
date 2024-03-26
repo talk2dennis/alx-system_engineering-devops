@@ -12,10 +12,10 @@ sudo apt-get -y update
 wget http://nginx.org/packages/ubuntu/pool/nginx/n/nginx/nginx_1.4.6-1ubuntu3.7_all.deb
 
 # Install the package using dpkg
-sudo dpkg -i nginx_1.4.6-1ubuntu3.7_all.deb
+dpkg -i nginx_1.4.6-1ubuntu3.7_all.deb
 
 # Install any missing dependencies
-sudo apt-get -f install -y
+apt-get -f install -y
 
 
 echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html
