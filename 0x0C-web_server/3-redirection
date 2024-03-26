@@ -1,5 +1,6 @@
-# installing and configuring nginx server
-# setting redirection
+#!/usr/bin/env bash
+# bash script to install and configure nginx
+
 
 # installing nginx
 sudo apt-get -y update
@@ -12,8 +13,11 @@ sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtu
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www/html
 
-# copy "Hello Worlk!" to the index file
+# copy "Hello World!" to the index file
 echo 'Hello World!' > /var/www/html/index.nginx-debian.html > /dev/null
 
-# start nginx
+sudo ufw allow 'Nginx HTTP'
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www/html
+
 sudo service nginx start
