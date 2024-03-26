@@ -75,3 +75,9 @@
 > ```DevOPs```	```SysAdmin```
 
 ## This repository houses server configuration tasks focusing on Nginx, alongside a collection of Bash scripts designed for configuring Nginx servers, implementing secure login mechanisms, facilitating file transfers, and more.
+# 0x0D. Web stack debugging #0
+> ```DevOps```	```SysAdmin```	```Scripting```	```Debugging```
+
+## TASKS
+### 0. Give me a page!
+> A docker image was given, with a default configuration that is not working; I have to find the solution, then provide the steps and code needed to the answer file
