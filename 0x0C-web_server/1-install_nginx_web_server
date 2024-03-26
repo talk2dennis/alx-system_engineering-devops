@@ -13,7 +13,6 @@ dpkg -i nginx_1.4.6-1ubuntu3.7_all.deb
 apt-get -f install -y
 
 
-echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html
 # Configure Nginx to listen on port 80
 sudo sed -i 's/listen 80;/listen 80;/g' /etc/nginx/sites-enabled/default
 sudo service nginx start
@@ -21,10 +20,8 @@ sudo ufw allow 'Nginx HTTP'
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www/html
 
-# create a copy
-sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html > /dev/null
 
+echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html
 # Clean up downloaded package
 rm nginx_1.4.6-1ubuntu3.7_all.deb
 
