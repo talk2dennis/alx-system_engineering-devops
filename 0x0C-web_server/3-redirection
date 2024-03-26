@@ -6,18 +6,22 @@
 sudo apt-get -y update
 sudo apt-get -y istall nginx
 
-# Configure Nginx to listen on port 80
-sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default
+# Configure Nginx to listen on port 80 and redirect /redirect_me
+sudo sed -i '/listen 80 default_server/a \
+    server_name _; \
+    location /redirect_me { \
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; \
+    }' /etc/nginx/sites-available/default
 
-# giving right to the user
+# Set file permissions for the HTML directory
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www/html
 
 # copy "Hello World!" to the index file
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html > /dev/null
+echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
 
+# Allow Nginx through the firewall
 sudo ufw allow 'Nginx HTTP'
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www/html
 
+# Start Nginx service
 sudo service nginx start
