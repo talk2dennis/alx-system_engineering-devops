@@ -4,7 +4,7 @@
 
 # Define the redirection configuration
 redirection_config="location /redirect_me {
-    return 301 ;https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    return 301 ;https://www.youtube.com/watch?v=QH2-TGUlwu4 PERMANENT;
 }"
 
 sudo apt-get -y update
@@ -12,27 +12,22 @@ sudo apt-get -y update
 wget http://nginx.org/packages/ubuntu/pool/nginx/n/nginx/nginx_1.4.6-1ubuntu3.7_all.deb
 
 # Install the package using dpkg
-dpkg -i nginx_1.4.6-1ubuntu3.7_all.deb
+sudo dpkg -i nginx_1.4.6-1ubuntu3.7_all.deb
 
 # Install any missing dependencies
-apt-get -f install -y
+sudo apt-get -f install -y
 
 
 echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html
 # Configure Nginx to listen on port 80
-sudo sed -i 's/listen 80;/listen 80;/g' /etc/nginx/sites-enabled/default
 sudo service nginx start
 sudo ufw allow 'Nginx HTTP'
 sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www/html
 
-# create a copy
-sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
 
 # Add redirection configuration to Nginx default site configuration
-echo "$redirection_config" | tee -a /etc/nginx/sites-available/default > /dev/null
-
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default
 
 # Clean up downloaded package
 rm nginx_1.4.6-1ubuntu3.7_all.deb
