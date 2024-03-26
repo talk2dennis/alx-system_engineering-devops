@@ -23,7 +23,7 @@ sudo chmod -R 755 /var/www/html
 
 # create a copy
 sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html > /dev/null
 
 # Clean up downloaded package
 rm nginx_1.4.6-1ubuntu3.7_all.deb
