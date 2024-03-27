@@ -21,7 +21,5 @@ sudo chmod -R 755 /var/www/html
 
 
 echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html
-# Clean up downloaded package
-rm nginx_1.4.6-1ubuntu3.7_all.deb
 
 sudo service nginx restart
