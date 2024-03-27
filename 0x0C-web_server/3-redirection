@@ -14,4 +14,4 @@ echo "Hello World" | sudo tee /var/www/html/index
 sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default
 
 # Start Nginx service
-sudo service nginx restart
+sudo systemctl restart Nginx
