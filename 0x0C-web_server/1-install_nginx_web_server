@@ -7,11 +7,10 @@ sudo apt-get -y update
 wget http://nginx.org/packages/ubuntu/pool/nginx/n/nginx/nginx_1.4.6-1ubuntu3.7_all.deb
 
 # Install the package using dpkg
-dpkg -i nginx_1.4.6-1ubuntu3.7_all.deb
+sudo apt-get -y update
 
 # Install any missing dependencies
-apt-get -f install -y
-
+sudo apt-get -y install nginx
 
 # Configure Nginx to listen on port 80
 sudo sed -i 's/listen 80;/listen 80;/g' /etc/nginx/sites-enabled/default
