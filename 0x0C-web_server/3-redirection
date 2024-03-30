@@ -6,12 +6,24 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
-# Allow Nginx through the firewall
-sudo ufw allow 'Nginx HTTP'
 
 echo "Hello World" | sudo tee /var/www/html/index
 
-sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default
+# start nginx service
+sudo service nginx start
+
+sed -i '/server_name/a 
+	location /redirect_me {
+		https://www.youtube.com/ permanent;
+	}' /etc/nginx/sites-available/default
+
+if [ -f /etc/nginx/sites-enabled/default ]; then
+    sudo rm /etc/nginx/sites-enabled/default
+fi
+
+# Create a symlink to the default configuration file
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
 
 # Start Nginx service
-sudo systemctl restart Nginx
+sudo service nginx restart
