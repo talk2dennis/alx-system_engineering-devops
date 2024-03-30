@@ -4,12 +4,28 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
+# echo "hello world" to index.html page
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 
-sed -i "46i rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+# start nginx server
+sudo service nginx start
 
+# for the custom_404.html page
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
 
-sed -i "46i error_page 404 /custom_404.html;" /etc/nginx/sites-available/default
+# edit the default configuration file
+sed -i '/server_name/a
+    error_page 404 /custom_404.html;
+    location /redirect_me {
+    	return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+' /etc/nginx/sites-available/default
+# Check if the default configuration file is present in sites-enabled
+if [ -f /etc/nginx/sites-enabled/default ]; then
+	sudo rm /etc/nginx/sites-enabled/default
+fi
+
+# Create a symlink to the default configuration file
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 sudo service nginx restart
