@@ -8,12 +8,9 @@ sudo apt -y update
 sudo apt -y install haproxy
 
 # start haproxy
-echo "starting haproxy..."
 sudo service haproxy start
-echo "haproxy started"
 
 # configure haproxy config
-echo "provisioning haproxy..."
 printf "# configures the frontend of the haproxy
 frontend my_front
         bind *:80
@@ -34,6 +31,4 @@ backend my_backend
 
 
 # restart haproxy
-echo "restarting haproxy..."
 sudo service haproxy restart
-echo "haproxy restarted"
