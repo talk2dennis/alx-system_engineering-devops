@@ -1,25 +1,38 @@
-#!/usr/bin/env bash
 # Configure HAproxy so that it send traffic to web-01 and web-02
-#	Distribute requests using a roundrobin algorithm
-#	Make sure that HAproxy can be managed via an init script
+#       Distribute requests using a roundrobin algorithm
+#       Make sure that HAproxy can be managed via an init script
 
 # Update and install HAproxy
 sudo apt -y update
 sudo apt -y install haproxy
 
+# start haproxy
+echo "starting haproxy..."
+sudo service haproxy start
+echo "haproxy started"
+
 # configure haproxy config
+echo "provisioning haproxy..."
 printf "# configures the frontend of the haproxy
 frontend my_front
-	bind *:80
-	default_backend my_backend
+        bind *:80
+        default_backend my_backend
+        timeout client 30s
+        timeout connect 30s
+        timeout server 30s
 
 # configures the backend of the haproxy
 backend my_backend
-	balance roundrobin
-	server 524512-web-01 54.197.44.251 check
-	server 524512-web-02 34.207.121.185 check
-
+        balance roundrobin
+        server 524512-web-01 54.197.44.251:80 check port 80
+        server 524512-web-02 34.207.121.185:80 check port 80
+        timeout client 30s
+        timeout connect 30s
+        timeout server 30s
 " > /etc/haproxy/haproxy.cfg
 
+
 # restart haproxy
+echo "restarting haproxy..."
 sudo service haproxy restart
+echo "haproxy restarted"
