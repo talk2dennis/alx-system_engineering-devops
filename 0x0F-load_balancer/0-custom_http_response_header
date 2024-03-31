@@ -18,21 +18,30 @@ sudo service nginx start
 # for the custom_404.html page
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
 
+
 # edit the default configuration file
-sudo sed -i '/server_name/ {
-    a\
-    add_header $hostname
-    error_page 404 /custom_404.html;\
-    location /redirect_me {\
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\
-    }
-    :a
-    n; ba
-}' /etc/nginx/sites-available/default
+sudo printf %s "server {
+        # listens on port 80
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        server_name _
+
+        # adds header X-Served-by which uses the hostname
+        add_header X-Served-By $hostname;
+
+        # sets the custom error page
+        error_page 404 /custom_404.html;
+        
+        # sets a redirection
+        location /redirect_me {
+                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
+}" > /etc/nginx/sites-available/default
 
 # Check if the default configuration file is present in sites-enabled
 if [ -f /etc/nginx/sites-enabled/default ]; then
-	sudo rm /etc/nginx/sites-enabled/default
+        sudo rm /etc/nginx/sites-enabled/default
 fi
 
 # Create a symlink to the default configuration file
