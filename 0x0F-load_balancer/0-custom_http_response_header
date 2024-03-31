@@ -25,7 +25,12 @@ sudo printf %s "server {
         listen 80 default_server;
         listen [::]:80 default_server;
 
-        server_name _
+	root /var/www/html;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
 
         # adds header X-Served-by which uses the hostname
         add_header X-Served-By $hostname;
