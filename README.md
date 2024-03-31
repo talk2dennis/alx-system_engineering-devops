@@ -81,3 +81,6 @@
 ## TASKS
 ### 0. Give me a page!
 > A docker image was given, with a default configuration that is not working; I have to find the solution, then provide the steps and code needed to the answer file
+# 0x0F. Load balancer
+> This repository contains bash script that configures and provisions nginx web servers and HAproxy loadbalancers.
+
