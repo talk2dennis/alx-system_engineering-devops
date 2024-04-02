@@ -45,7 +45,7 @@ file {'/etc/nginx/sites-available/default':
 }
 
 # symlink file
-file { '/etc/nginx/sites-available/default':
+file { '/etc/nginx/sites-enabled/default':
   ensure => link,
-  target => '/etc/nginx/sites-enabled/default',
+  target => '/etc/nginx/sites-available/default',
 }
