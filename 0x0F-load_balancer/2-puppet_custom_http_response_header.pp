@@ -1,6 +1,7 @@
 $server_hostname = $::facts['hostname']
-$config = "server {\n
-	listen 80;\n
+$config = "server {
+	listen 80 default_server;
+        listen [::]:80 default_server;\n
 	root /var/www/html;\n
 	index index.html index.htm index.nginx-debian.html;\n\n
 	server_name _;\n\n
@@ -45,8 +46,9 @@ file {'/etc/nginx/sites-available/default':
 }
 
 # remove file
-file { '/etc/nginx/sites-enabled/default':
-  ensure => absent,
+exec { 'rm_default':
+  command => '/usr/bin/rm /etc/nginx/sites-enabled/default',
+  path    => '/usr/bin',
 }
 
 
