@@ -39,7 +39,7 @@ file {'/var/www/html/custom_404.html':
 
 # configure nginx to listen on port 80 and add a custom header
 
-file {'/etc/nginx/sites-enabled/default':
+file {'/etc/nginx/sites-available/default':
   ensure  => present,
   content => $config,
 }
