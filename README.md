@@ -84,3 +84,5 @@
 # 0x0F. Load balancer
 > This repository contains bash script that configures and provisions nginx web servers and HAproxy loadbalancers.
 
+# 0x0E. Web stack debugging #1
+> This repository contains nginx server drbugging task using bash script to fix once you find the bug
