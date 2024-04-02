@@ -44,6 +44,12 @@ file {'/etc/nginx/sites-available/default':
   content => $config,
 }
 
+# remove file
+file { '/etc/nginx/sites-enabled/default':
+  ensure => absent,
+}
+
+
 # symlink file
 file { '/etc/nginx/sites-enabled/default':
   ensure => link,
