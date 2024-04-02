@@ -23,19 +23,18 @@ exec {'apt_update':
 
 # install nginx
 package {'nginx':
-  ensure => installed,
+  ensure  => installed,
+  require => package('apt_update'),
 }
 
 file {'/var/www/html/index.html':
   ensure  => present,
   content => 'Hello World!',
-  mode    => '0644',
 }
 
 file {'/var/www/html/custom_404.html':
   ensure  => present,
   content => "Ceci n'est pas une page",
-  mode    => '0644',
 }
 
 # configure nginx to listen on port 80 and add a custom header
@@ -60,6 +59,5 @@ file { '/etc/nginx/sites-enabled/default':
 
 service { 'nginx':
   ensure => running,
-  enable => true,
-  subscribe => File['/etc/nginx/sites-available/default'],
+  require => 'nginx',
 }
