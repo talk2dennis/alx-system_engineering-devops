@@ -43,3 +43,9 @@ file {'/etc/nginx/sites-available/default':
   ensure  => present,
   content => $config,
 }
+
+# symlink file
+file { '/etc/nginx/sites-available/default':
+  ensure => link,
+  target => '/etc/nginx/sites-enabled/default',
+}
