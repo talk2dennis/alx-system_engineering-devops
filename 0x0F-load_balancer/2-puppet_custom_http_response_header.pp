@@ -1,4 +1,4 @@
-$hostname = $::fqdn
+$server_hostname = $::fqdn
 $config = "server {\n
 	listen 80;\n
 	root /var/www/html;\n
@@ -6,7 +6,7 @@ $config = "server {\n
 	server_name _;\n\n
 	error_page 404 /custom_404.html;\n
 	# custom header
-	add_header X-Served-By \"$hostname\";\n
+	add_header X-Served-By \"$server_hostname\";\n
 	location /redirect_me {\n
 		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n
 	}\n
@@ -14,24 +14,24 @@ $config = "server {\n
 
 # update the app catalog
 exec {'apt_update':
-  command => 'usr/bin/apt update',
-  path    => 'usr/bin/',
+  command => '/usr/bin/apt update',
+  path    => '/usr/bin',
   refreshonly => 'true',
 }
 
 # install nginx
 package {'nginx':
-  ensure => 'installed',
+  ensure => installed,
 }
 
 file {'/var/www/html/index.html':
-  ensure  => 'present',
+  ensure  => present,
   content => 'Hello World!',
   mode    => '0644',
 }
 
-file {'custom_404.html':
-  ensure  => 'present',
+file {'/var/www/html/custom_404.html':
+  ensure  => present,
   content => "Ceci n'est pas une page",
   mode    => '0644',
 }
@@ -39,6 +39,6 @@ file {'custom_404.html':
 # configure nginx to listen on port 80 and add a custom header
 
 file {'/etc/nginx/sites-enabled/default':
-  ensure  => 'present',
+  ensure  => present,
   content => $config,
 }
