@@ -1,4 +1,4 @@
-$server_hostname = $::fqdn
+$server_hostname = $::facts['hostname']
 $config = "server {\n
 	listen 80;\n
 	root /var/www/html;\n
@@ -6,16 +6,17 @@ $config = "server {\n
 	server_name _;\n\n
 	error_page 404 /custom_404.html;\n
 	# custom header
-	add_header X-Served-By \"$server_hostname\";\n
+	add_header X-Served-By ${server_hostname};\n
 	location /redirect_me {\n
 		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n
 	}\n
 }"
 
+
 # update the app catalog
 exec {'apt_update':
-  command => '/usr/bin/apt update',
-  path    => '/usr/bin',
+  command     => '/usr/bin/apt update',
+  path        => '/usr/bin',
   refreshonly => 'true',
 }
 
