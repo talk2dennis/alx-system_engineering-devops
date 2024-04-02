@@ -49,3 +49,9 @@ file { '/etc/nginx/sites-enabled/default':
   ensure => link,
   target => '/etc/nginx/sites-available/default',
 }
+
+service { 'nginx':
+  ensure => running,
+  enable => true,
+  subscribe => File['/etc/nginx/sites-available/default'],
+}
