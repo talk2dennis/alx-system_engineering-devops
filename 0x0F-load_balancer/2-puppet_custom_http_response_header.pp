@@ -18,13 +18,13 @@ $config = "server {
 exec {'apt_update':
   command     => '/usr/bin/apt update',
   path        => '/usr/bin',
-  refreshonly => 'true',
+  refreshonly => true,
 }
 
 # install nginx
 package {'nginx':
   ensure  => installed,
-  require => package('apt_update'),
+  require => exec['apt_update'],
 }
 
 file {'/var/www/html/index.html':
@@ -59,5 +59,5 @@ file { '/etc/nginx/sites-enabled/default':
 
 service { 'nginx':
   ensure => running,
-  require => 'nginx',
+  require => package['nginx'],
 }
