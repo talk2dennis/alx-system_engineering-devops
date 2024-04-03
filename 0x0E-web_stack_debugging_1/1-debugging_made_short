@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# sets nginx server to listen on port 80, reload the server and kill running processess
+sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
+kill -9 "$(cat /var/run/nginx.pid)"
