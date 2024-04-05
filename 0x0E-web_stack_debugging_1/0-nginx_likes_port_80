@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
 # debugging nginx server
 
-# delete if the default link file in site enabled
-if [ -f /etc/nginx/sites-enabled/default ]; then
-	rm /etc/nginx/sites-enabled/default
-fi
-
 # create a link between the sites-availabe and site enabled
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 # restart or reload nginx
 service nginx reload
