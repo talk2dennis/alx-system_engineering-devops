@@ -8,7 +8,7 @@ sudo apt-get -y install nginx
 sudo service nginx start
 
 # create a link between the sites-availabe and site enabled
-ln -sf  /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+sudo ln -sf  /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 # restart or reload nginx
-service nginx reload
+service nginx restart
