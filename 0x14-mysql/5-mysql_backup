@@ -16,7 +16,7 @@
 #fi
 
 #create mysqldump
-mysqldump -uroot -p"$1"--all-databases > backup.sql
+mysqldump -uroot -p"$1" --all-databases > backup.sql
 
 # create .tgz archive version with time of creating it
 tar -czf $(date +"%d-%m-%Y").tar.gz backup.sql
