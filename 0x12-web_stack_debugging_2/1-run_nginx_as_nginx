@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # nginx must be running as nginx user
-#	nginx must be listening on all active IPs on port 8080
+#       nginx must be listening on all active IPs on port 8080
 
 # update the nginx.conf file to user nginx
-sudo sed -i "s/user www-data/user nginx/" /etc/nginx/nginx.conf
-sudo sed -i "s/listen 80/listen 8080/g" /etc/nginx/sites-available/default
+sudo sed -i "s/#user www-data;/user nginx;/" /etc/nginx/nginx.conf
+sudo sed -i "s/listen 80 default_server/listen 8080 default_server/g" /etc/nginx/sites-available/default
 chmod 644 /etc/nginx/nginx.conf
-
-sudo -u nginx service nginx restart
+# pkill apache2
+sudo -u nginx service nginx start
