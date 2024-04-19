@@ -2,6 +2,6 @@
 # update the nginx.conf file to user nginx
 sudo sed -i "s/user www-data/user nginx/" /etc/nginx/nginx.conf
 sudo sed -i "s/listen 80/listen 8080/g" /etc/nginx/sites-available/default
-chmod 644 /etc/nginx/nginx.conf
+chown nginx:nginx /etc/nginx/nginx.conf
 pkill apache2
-sudo -u nginx service nginx restart
+sudo -u nginx service nginx start
