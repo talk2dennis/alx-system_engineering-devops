@@ -18,7 +18,7 @@ def top_ten(subreddit):
     param = {"limit": 10}
     header = headers = {"User-Agent": "MyRedditBot/1.0"}
     res = requests.get(url, headers=header, params=param,
-                        allow_redirects=False)
+                       allow_redirects=False)
     if res.status_code == 200:
         data = res.json().get("data")
         for child in data.get("children"):
