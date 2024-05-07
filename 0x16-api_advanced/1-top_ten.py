@@ -17,10 +17,10 @@ def top_ten(subreddit):
     url = f"https://www.reddit.com/r/{subreddit}/hot/.json"
     param = {"limit": 10}
     header = headers = {"User-Agent": "MyRedditBot/1.0"}
-    res = requests.get(url, headers= header, params = param,
+    res = requests.get(url, headers=header, params=param,
                         allow_redirects=False)
     if res.status_code == 200:
-        data = response.json().get(data)
+        data = res.json().get(data)
         print(data)
     else:
         print("error")
