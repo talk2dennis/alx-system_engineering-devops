@@ -12,7 +12,7 @@ def number_of_subscribers(subreddit):
     Return: return the number of subscribers of a subreddit
     """
     if not subreddit or not isinstance(subreddit, str):
-        return 0
+        print("None")
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {"User-Agent": "MyRedditBot/1.0"}
 
