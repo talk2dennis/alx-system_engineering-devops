@@ -11,7 +11,7 @@ def number_of_subscribers(subreddit):
     Keyword arguments: subreddit (a string)
     Return: return the number of subscribers of a subreddit
     """
-    if not subreddit and not isinstance(subreddit, str):
+    if not subreddit or not isinstance(subreddit, str):
         return 0
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
     headers = {
