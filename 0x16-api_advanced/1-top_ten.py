@@ -13,15 +13,17 @@ def top_ten(subreddit):
     Return: top 10 post
     """
     if not subreddit or not isinstance(subreddit, str):
-        return 0
-    url = f"https://www.reddit.com/r/{subreddit}/hot/.json"
-    param = {"limit": 10}
-    header = headers = {"User-Agent": "MyRedditBot/1.0"}
-    res = requests.get(url, headers=header, params=param,
-                       allow_redirects=False)
-    if res.status_code == 200:
-        data = res.json().get("data")
-        for child in data.get("children"):
-            print(child.get("data").get("title"))
-    else:
+        print("None")
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    headers = {"User-Agent": "MyRedditBot/1.0"}
+    try:
+        response = requests.get(url, headers=headers, params={"limit": 8})
+        if response.status_code == 200:
+            data = response.json()
+            children = data["data"]["children"]
+            for child in children:
+                print(child["data"]["title"])
+        else:
+            print("None")
+    except Exception as e:
         print("None")
