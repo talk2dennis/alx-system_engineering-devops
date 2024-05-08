@@ -2,6 +2,7 @@
 """
     A python script that returns the top 10 post
 """
+import json
 import requests
 
 
@@ -24,8 +25,8 @@ def top_ten(subreddit):
         if response.status_code == 200:
             data = response.json()
             children = data["data"]["children"]
-            for child in children:
-                print(child["data"]["title"])
+            titles = [child["data"]["title"] for child in children]
+            return json.dumps({"titles": titles})
         else:
             print("None")
     except Exception as e:
