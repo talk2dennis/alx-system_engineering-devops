@@ -14,7 +14,7 @@ def recurse(subreddit, hot_list=[]):
     """
     if not subreddit or not isinstance(subreddit, str):
         return None
-    
+
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     headers = {"User-Agent": "MyRedditBot/1.0"}
     try:
