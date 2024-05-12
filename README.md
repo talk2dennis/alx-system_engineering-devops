@@ -101,3 +101,7 @@ README.md
 > - API
 
 ## Using python requests to get retrieve response from Reddit API
+# 0x19. Postmortem
+> - DevOps
+> - SysAdmi
+> - SysAdmin
