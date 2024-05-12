@@ -1,8 +1,8 @@
 import requests
 
 # Replace 'YOUR_API_KEY' and 'YOUR_APP_KEY' with your actual Datadog API and application keys
-api_key = '7cf57dabeee11d00ce5879998ea7da4d'
-app_key = '4ca756c111a9ec47470be5203dd5360e6f08dfdb'
+api_key =''
+app_key =''
 
 # Authenticate with the Datadog API
 headers = {
