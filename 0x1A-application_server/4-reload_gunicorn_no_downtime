@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Reloads gunicorn 
 
-ps aux | pgrep gunicorn | xargs kill -HUP
+pgrep gunicorn | xargs kill -HUP
